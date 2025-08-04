@@ -1244,7 +1244,7 @@
                 top: var(--space-4);
                 left: var(--space-4);
                 right: var(--space-4);
-                transform: none;
+                transform: translateY(0);
             }
 
             .nav-container {
@@ -2002,10 +2002,11 @@
             }
 
             // Hide/show navbar on scroll
+            const isMobile = window.innerWidth <= 768;
             if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                navbar.style.transform = 'translateX(-50%) translateY(-100%)';
+                navbar.style.transform = isMobile ? 'translateY(-100%)' : 'translateX(-50%) translateY(-100%)';
             } else {
-                navbar.style.transform = 'translateX(-50%) translateY(0)';
+                navbar.style.transform = isMobile ? 'translateY(0)' : 'translateX(-50%) translateY(0)';
             }
             
             lastScrollY = currentScrollY;
