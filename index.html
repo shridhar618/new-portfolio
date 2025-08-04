@@ -1114,7 +1114,7 @@
         }
 
         /* ===== FLOATING ACTION BUTTON ===== */
-        .fab {
+        .floating-action-btn {
             position: fixed;
             bottom: var(--space-8);
             right: var(--space-8);
@@ -1136,12 +1136,12 @@
             z-index: 1000;
         }
 
-        .fab.visible {
+        .floating-action-btn.visible {
             opacity: 1;
             visibility: visible;
         }
 
-        .fab:hover {
+        .floating-action-btn:hover {
             transform: translateY(-4px) scale(1.1);
             box-shadow: var(--shadow-glow);
         }
@@ -1206,6 +1206,11 @@
             text-decoration: none;
             transition: all 0.3s var(--ease-out-cubic);
             backdrop-filter: blur(10px);
+        }
+
+        .social-link i {
+            font-size: 1.25rem;
+            display: inline-block;
         }
 
         .social-link:hover {
@@ -1312,7 +1317,7 @@
                 padding: var(--space-6);
             }
 
-            .fab {
+            .floating-action-btn {
                 bottom: var(--space-4);
                 right: var(--space-4);
                 width: 56px;
@@ -1966,7 +1971,7 @@
     </footer>
 
     <!-- Floating Action Button -->
-    <button class="fab" id="fab" aria-label="Back to top">
+    <button class="floating-action-btn" id="fab" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </button>
 
