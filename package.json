@@ -1,0 +1,28 @@
+{
+  "name": "portfolio-admin",
+  "version": "1.0.0",
+  "description": "Portfolio website with admin panel for customer management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "pdfkit": "^0.14.0",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "portfolio",
+    "admin",
+    "nodejs",
+    "sqlite"
+  ],
+  "author": "Shridhar Bhat",
+  "license": "MIT"
+}

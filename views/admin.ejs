@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <h1>Customer Submissions</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th><th>Email</th><th>Company</th><th>Project</th><th>Budget</th><th>Message</th><th>Download</th>
+        </tr>
+        <% customers.forEach(customer => { %>
+            <tr>
+                <td><%= customer.name %></td>
+                <td><%= customer.email %></td>
+                <td><%= customer.company %></td>
+                <td><%= customer.project %></td>
+                <td><%= customer.budget %></td>
+                <td><%= customer.message %></td>
+                <td><a href="/download/<%= customer.id %>">Download PDF</a></td>
+            </tr>
+        <% }) %>
+    </table>
+</body>
+</html>
