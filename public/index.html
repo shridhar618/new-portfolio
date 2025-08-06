@@ -2139,7 +2139,7 @@
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             // Form validation
             const formData = new FormData(this);
             const name = formData.get('name');
@@ -2156,20 +2156,36 @@
                 return;
             }
 
-            // Simulate form submission
             const submitButton = this.querySelector('.submit-button');
             const originalText = submitButton.innerHTML;
-            
+
             submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             submitButton.disabled = true;
 
-            // Simulate API call
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
-                this.reset();
+            // Send data to backend
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification('Thank you! Your message has been sent successfully. I\'ll get back to you within 24 hours.', 'success');
+                    contactForm.reset();
+                } else {
+                    showNotification('There was an error submitting your message. Please try again.', 'error');
+                }
                 submitButton.innerHTML = originalText;
                 submitButton.disabled = false;
-            }, 2000);
+            })
+            .catch(() => {
+                showNotification('There was an error submitting your message. Please try again.', 'error');
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
         });
 
         // Email validation
@@ -2331,6 +2347,40 @@
                 }, 5000);
             }
         });
+
+        const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'shridharbhat618@gmail.com',         // your Gmail
+    pass: 'shree'             // use app password, not real one
+  }
+});
+
+function sendAdminNotification(customerData) {
+  const mailOptions = {
+    from: 'shridharbhat618@gmail.com',
+    to: 'shridharbhat618@gmail.com', // your admin email
+    subject: 'New Contact Form Submission',
+    text: `
+      New customer submission:
+
+      Name: ${customerData.name}
+      Email: ${customerData.email}
+      Company: ${customerData.company}
+      Project: ${customerData.project}
+      Budget: ${customerData.budget}
+      Message: ${customerData.message}
+    `
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) return console.log('Email error:', error);
+    console.log('Admin notified:', info.response);
+  });
+}
+
 
         // Console signature
         console.log(`
