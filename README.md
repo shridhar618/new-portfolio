@@ -16,8 +16,8 @@ Node.js · Express · SQLite · EJS · PDFKit · Nodemailer
 ## Getting started
 
 ```bash
-npm install express body-parser sqlite3 ejs pdfkit nodemailer
-node server.js
+npm install
+npm start
 ```
 
 Then open http://localhost:3000.
